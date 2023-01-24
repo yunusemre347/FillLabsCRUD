@@ -1,0 +1,61 @@
+
+.App{
+  margin: 50px;
+  background-color: rgb(211, 226, 221);
+  padding: 50px;
+
+}
+.button-box{
+  display: flex;
+  width: 150px;
+  justify-content: space-around;
+  margin: auto;
+  margin-bottom: 10px;
+}
+.row{
+  display: none;
+}
+form{
+  border: 1px solid black;
+  background-color: antiquewhite;
+  padding: 10px;
+  width: 380px;
+  margin: auto;
+  height: 120px;
+}
+form div{
+  display: flex;
+  justify-content: space-around;
+}
+ul{
+  margin: 0;
+  padding: 0;
+}
+li{
+  list-style: none;
+}
+.single-user{
+  display: grid;
+  grid-template-columns:  45% 45% 10%;
+  width: 380px;
+  height: 22px;
+  margin: auto;
+}
+.single-user div{
+  border: 1px solid black;
+  background-color: white;
+}
+.title{
+  display: grid;
+  grid-template-columns: 45% 45% 10%;
+  width: 380px;
+  margin: auto;
+
+
+}
+.title div{
+  background-color: white;
+  border: 1px solid black;
+  margin-top: 10px;
+  text-align: center;
+}
