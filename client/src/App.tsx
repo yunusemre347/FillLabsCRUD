@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { SingleUser } from './SingleUser';
+import { SingleUser } from './components/SingleUser';
 
 const ENDPOINT = "http://localhost:12345/"
 //const ENDPOINT = "https://randomuser.me/api/?results=5"
@@ -98,8 +98,8 @@ function App() {
   //fetch for first render
   useEffect(() => {
     customfetch(`${ENDPOINT}getAll`, "GET")
-    console.log(users)
-  }, [users])
+    console.log("use effect")
+  }, [customfetch])
 
   //Action button state functions.
   const handleClickNew = () => {
@@ -116,7 +116,6 @@ function App() {
   }
   //fetch actions for each button
   const selectedAction = (event: React.SyntheticEvent) => {//I will set a better event type in future
-
     if (button == "Save" && firstname !== undefined && lastname !== undefined) {
       (customfetch(`${ENDPOINT}update/${row}`, "PUT", { firstname, lastname }))
     }
@@ -136,6 +135,21 @@ function App() {
     setVisibility("none")
     setButton("Create")
   }
+  //write description according to mode
+  const description = () => {
+    switch (button) {
+      case "Delete":
+        return "Please select an item to delete"
+      case "Create":
+        return "Please fill the form to create"
+      case "Save":
+        return "Please select an item to edit then fill the form"
+    }
+  }
+  //text inputs on delete mode
+  const hideOnDelete =  {
+    display: button == "Delete" ?  "none"  :  "flex" 
+  }
 
   return (
     <div className="App">
@@ -146,14 +160,12 @@ function App() {
           <button onClick={handleClickDelete}>Delete</button>
         </div>
         <form className='form' style={{ display: `${visibility}` }} >
-          <p style={button == "Delete" ? { display: "flex" } : { display: "none" }}>Please select an item to delete </p>
-          <p style={button == "Save" ? { display: "flex" } : { display: "none" }}>Please select an item to edit then fill the form</p>
-          <p style={button == "Create" ? { display: "flex" } : { display: "none" }}>Please fill the form to create</p>
-          <div style={button == "Delete" ? { display: "none" } : { display: "flex" }} >
+          <p>{description()}</p>
+          <div style={hideOnDelete} >
             <label>First Name </label>
             <input required={button == "Delete" ? false : true} placeholder='First Name' onChange={(e) => setFirstname(e.target.value)} />
           </div>
-          <div style={button == "Delete" ? { display: "none" } : { display: "flex" }} >
+          <div style={hideOnDelete}>
             <label> Last Name</label>
             <input required={button == "Delete" ? false : true} placeholder='Last Name' onChange={(e) => setLastname(e.target.value)} />
           </div>
@@ -162,7 +174,9 @@ function App() {
             <button onClick={hideForm}>Back</button>
           </div>
         </form>
-        <div className='title'><div>First Name</div><div>Last Name</div></div>
+        <div className='title'><div>First Name</div>
+        <div>Last Name</div>
+        </div>
         <ul>
           {users?.map((users: DataState) => (
             <li key={users._id}> <SingleUser user={users} getID={getID} button={button} /></li>

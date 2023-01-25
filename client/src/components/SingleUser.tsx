@@ -12,8 +12,6 @@ type SingleUserProps = {
     button: string
 }
 
-
-
 export const SingleUser = ({user,getID,button}:SingleUserProps) => {
   const ident : string |undefined = user?._id
   return (
