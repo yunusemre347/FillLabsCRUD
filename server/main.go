@@ -45,7 +45,7 @@ func CreateUserEndpoint(response http.ResponseWriter, request *http.Request) {
 	// response.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 	// response.Header().Add("content-type", "application/json")
 	// response.Header().Add("Access-Control-Allow-Origin", "http://localhost:3000")
-	models.Headers(response)
+	models.Headers(response,"POST")
 
 	var user models.User
 	json.NewDecoder(request.Body).Decode(&user)
@@ -60,7 +60,7 @@ func CreateUserEndpoint(response http.ResponseWriter, request *http.Request) {
 func GetUsersEndpoint(response http.ResponseWriter, request *http.Request) {
 	// response.Header().Add("content-type", "application/json")
 	// response.Header().Add("Access-Control-Allow-Origin", "http://localhost:3000")
-	models.Headers(response)
+	models.Headers(response,"GET")
 
 	var users []models.User
 	collection := client.Database(dbName).Collection(collectionName)
@@ -91,7 +91,7 @@ func GetSingleUserEndpoint(response http.ResponseWriter, request *http.Request) 
 
 	// response.Header().Add("content-type", "application/json")
 	// response.Header().Add("Access-Control-Allow-Origin", "http://localhost:3000")
-	models.Headers(response)
+	models.Headers(response,"GET")
 	params := mux.Vars(request)
 	id, _ := primitive.ObjectIDFromHex(params["id"])
 	var user models.User
@@ -114,7 +114,7 @@ func UpdateUserEndpoint(response http.ResponseWriter, request *http.Request) {
 	// response.Header().Add("content-type", "application/json")
 	// response.Header().Add("Access-Control-Allow-Origin", "http://localhost:3000")
 	// response.Header().Set("Access-Control-Allow-Methods", "PUT")
-	models.Headers(response)
+	models.Headers(response,"PUT")
 
 	params := mux.Vars(request)
 	id, _ := primitive.ObjectIDFromHex(params["id"])
@@ -134,13 +134,13 @@ func UpdateUserEndpoint(response http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(response).Encode(result)
 }
 
-// delete a doc
+//delete a doc
 func DeleteUserEndpoint(response http.ResponseWriter, request *http.Request) {
 	// response.Header().Set("Context-Type", "application/x-www-form-urlencoded")
 	// response.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	// response.Header().Set("Access-Control-Allow-Methods", "DELETE")
 	// response.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-	models.Headers(response)
+	models.Headers(response,"DELETE")
 	//////////////
 	params := mux.Vars(request)
 	fmt.Println(params["id"])

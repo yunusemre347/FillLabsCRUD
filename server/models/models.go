@@ -12,9 +12,9 @@ type User struct {
 	Lastname  string             `json:"lastname,omitempty" bson:"lastname,omitempty"`
 }
 
-func Headers(response http.ResponseWriter) {
+func Headers(response http.ResponseWriter, methodType string) {
 	response.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	response.Header().Set("Access-Control-Allow-Methods", "POST")
+	response.Header().Set("Access-Control-Allow-Methods", methodType)
 	response.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 	response.Header().Add("content-type", "application/json")
 	response.Header().Add("Access-Control-Allow-Origin", "http://localhost:3000")
