@@ -1,3 +1,4 @@
+import {memo} from "react"
 type GetIDFunction = (id: string) => void;
 
 interface UserState {
@@ -11,7 +12,7 @@ type SingleUserProps = {
   button: string;
 };
 
-export const SingleUser = ({ user, getID, button }: SingleUserProps) => {
+ const SingleUser =  ({ user, getID, button }: SingleUserProps) => {
   const ident: string | undefined = user?._id;
   return (
     <div className="single-user" key={user._id}>
@@ -21,7 +22,7 @@ export const SingleUser = ({ user, getID, button }: SingleUserProps) => {
       <div>
         <span> &nbsp;{user?.lastname}</span>
       </div>
-      {button === "Create" ? (
+      {button === "Default"||button === "Create" ? (
         <></>
       ) : (
         <input
@@ -33,3 +34,5 @@ export const SingleUser = ({ user, getID, button }: SingleUserProps) => {
     </div>
   );
 };
+
+export default memo(SingleUser)

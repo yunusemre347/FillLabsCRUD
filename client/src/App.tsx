@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { CustomFetch } from "./helper/CustomFetch";
 import { ButtonBox } from "./components/ButtonBox";
 import { FormBox } from "./components/FormBox";
-import { UsersGrid } from "./components/UsersGrid";
+import UsersGrid from "./components/UsersGrid";
 
 function App() {
   const [users, setUsers] = useState<DataState[]>([]);

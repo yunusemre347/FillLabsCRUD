@@ -1,5 +1,5 @@
-import React from "react";
-import { SingleUser } from "./SingleUser";
+import React, { memo } from "react";
+import SingleUser from "./SingleUser";
 
 interface DataState {
   _id?: string;
@@ -12,7 +12,7 @@ interface props {
   setRow: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-export const UsersGrid: React.FC<props> = ({ users, button, setRow }) => {
+const UsersGrid: React.FC<props> = ({ users, button, setRow }) => {
   const getID = (ident: string) => {
     setRow(ident);
   };
@@ -32,3 +32,5 @@ export const UsersGrid: React.FC<props> = ({ users, button, setRow }) => {
     </div>
   );
 };
+
+export default memo(UsersGrid);
