@@ -57,36 +57,40 @@ export const FormBox: React.FC<props> = ({
     }
     event.preventDefault();
   };
-
-  return (
-    <form className="form">
-      <p>{description()}</p>
-      {button === "Delete" ? (
-        <></>
-      ) : (
-        <>
+  switch (button) {
+    case "Default":
+      return <></>;
+    default:
+      return (
+        <form className="form">
+          <p>{description()}</p>
+          {button === "Delete" ? (
+            <></>
+          ) : (
+            <>
+              <div>
+                <label>First Name </label>
+                <input
+                  required={button == "Delete" ? false : true}
+                  placeholder="First Name"
+                  onChange={(e) => setFirstname(e.target.value)}
+                />
+              </div>
+              <div>
+                <label> Last Name</label>
+                <input
+                  required={button == "Delete" ? false : true}
+                  placeholder="Last Name"
+                  onChange={(e) => setLastname(e.target.value)}
+                />
+              </div>
+            </>
+          )}
           <div>
-            <label>First Name </label>
-            <input
-              required={button == "Delete" ? false : true}
-              placeholder="First Name"
-              onChange={(e) => setFirstname(e.target.value)}
-            />
+            <button onClick={selectedAction}>{button}</button>
+            <button onClick={hideForm}>Back</button>
           </div>
-          <div>
-            <label> Last Name</label>
-            <input
-              required={button == "Delete" ? false : true}
-              placeholder="Last Name"
-              onChange={(e) => setLastname(e.target.value)}
-            />
-          </div>
-        </>
-      )}
-      <div>
-        <button onClick={selectedAction}>{button}</button>
-        <button onClick={hideForm}>Back</button>
-      </div>
-    </form>
-  );
+        </form>
+      );
+  }
 };
