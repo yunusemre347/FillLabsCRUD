@@ -6,12 +6,10 @@ interface DataState {
   firstname: string;
   lastname: string;
 }
-
 const ENDPOINT = "http://localhost:12345/";
 const headers = {
   "Content-type": "application/json",
 };
-
 export const CustomFetch = async (
   url: string,
   type: string,
