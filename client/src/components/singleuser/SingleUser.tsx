@@ -15,7 +15,7 @@ type SingleUserProps = {
  const SingleUser =  ({ user, getID, button }: SingleUserProps) => {
   const ident: string | undefined = user?._id;
   return (
-    <div className="single-user" key={user._id}>
+    <div className="single-user" data-testid="single-user" key={user._id}>
       <div>
         <span>&nbsp; {user?.firstname}</span>
       </div>

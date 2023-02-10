@@ -1,9 +1,9 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import { CustomFetch } from "./helper/CustomFetch";
-import { ButtonBox } from "./components/ButtonBox";
-import { FormBox } from "./components/FormBox";
-import UsersGrid from "./components/UsersGrid";
+import { ButtonBox } from "./components/buttonbox/ButtonBox";
+import { FormBox } from "./components/formbox/FormBox";
+import UsersGrid from "./components/usersgrid/UsersGrid";
 
 function App() {
   const [users, setUsers] = useState<DataState[]>([]);

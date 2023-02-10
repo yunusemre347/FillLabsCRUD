@@ -1,7 +1,7 @@
 import React from "react";
-import { CustomFetch } from "../helper/CustomFetch";
+import { CustomFetch } from "../../helper/CustomFetch";
 
-interface props {
+export interface props {
   getAllData: () => void;
   button: string;
   setButton: React.Dispatch<React.SetStateAction<string>>;

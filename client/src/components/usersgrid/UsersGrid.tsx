@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import SingleUser from "./SingleUser";
+import SingleUser from "../singleuser/SingleUser";
 
 interface DataState {
   _id?: string;
